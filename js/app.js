@@ -26,21 +26,21 @@ class MenuForm {
                 item: 'fried turkey',
                 imgUrl: 'fried_turkey.jpeg',
                 isChecked: false,
-                makeBy: 'Mom'
+                madeBy: 'Mom'
             },
             {
                 id: 2,
                 type: 'meat',
                 item: 'honey ham',
-                imgUrl: 'honey_ham_url',
+                imgUrl: 'honey_ham.jpeg',
                 isChecked: false,
-                makeBy: 'Tymer'
+                madeBy: 'Tymer'
             },
             {
                 id: 3,
                 type: 'meat',
                 item: 'prime rib',
-                imgUrl: 'prime_rib.jpeg',
+                imgUrl: 'prime_rib2.jpeg',
                 isChecked: false,
                 madeBy: 'Dillon'
             },
@@ -128,7 +128,7 @@ class MenuForm {
                 id: 14,
                 type: 'desserts',
                 item: 'red velvet cake',
-                imgUrl: 'red_velvetcale.jpeg',
+                imgUrl: 'red_velvet_cake.jpeg',
                 isChecked: false,
                 madeBy: 'Mom'
             },
@@ -205,10 +205,10 @@ class MenuForm {
             column.innerHTML = `
                 <div class="figure-div" data-isChecked=${obj.isChecked}>
                     <figure class="figure item-figure">
-                        <img src="https://via.placeholder.com/200x200" alt="placeholder img" class="img-fluid image figure-img food-image rounded">
+                        <img src="images/${obj.imgUrl}" alt="placeholder img" class="img-fluid image figure-img food-image w-100 rounded" />
                         <figcaption class="figure-caption food-caption">${obj.hasOwnProperty('madeBy') ? obj.madeBy : ''}<figcaption>
                     </figure>
-                    <h3 class="food-heading">${obj.item}</h3>
+                    <h3 class="food-heading text-capitalize">${obj.item}</h3>
                     <div class="form-check">
                         <input 
                             type="checkbox" 
@@ -274,7 +274,7 @@ class MenuForm {
         })
         // console.log(checkboxes)
         // console.log(this.plate)
-        const personPlate = document.getElementById(personPlate)
+        const personPlate = document.getElementById('personPlate')
         personPlate.innerText = `${this.plate.person}'s`
 
         this.makeReceipt(this.menu)
@@ -282,9 +282,7 @@ class MenuForm {
 
     makeReceipt(arr) {
 
-
-        for (let i = 0;  i< arr.length; i++) {
-
+        for (let i = 0;  i < arr.length; i++) {
             if (arr[i].isChecked) {
                 const listItem = document.createElement('li')
                 listItem.classList.add('list-group-item')
@@ -303,7 +301,8 @@ const submitBtn = document.getElementById('submitBtn')
 const action = new MenuForm()
 action.init()
 
-submitBtn.addEventListener('click', ()=> {
+submitBtn.addEventListener('click', (e)=> {
+    e.preventDefault()
     // console.log('click')
     action.buildPlate()
 })
